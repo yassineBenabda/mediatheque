@@ -1,6 +1,7 @@
 package com.yassine;
 
-public abstract class Document {
+public abstract class Document implements Comparable<Document> {
+
     private String titre;
 
     public Document(String titre) {
@@ -12,4 +13,9 @@ public abstract class Document {
     }
 
     public abstract String descriptionCourte();
+
+    @Override
+    public int compareTo(Document autre) {
+        return this.titre.compareToIgnoreCase(autre.titre);
+    }
 }
