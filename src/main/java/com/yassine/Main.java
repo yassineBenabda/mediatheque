@@ -14,14 +14,19 @@ public class Main {
         System.out.println(livre.descriptionCourte());
 
         // Test emprunt
-        livre.emprunter();
+        try {
+            livre.emprunter();
+            System.out.println("Emprunté : " + livre.estEmprunte());
+        } catch (DocumentIndisponibleException e) {
+            System.out.println("Erreur : " + e.getMessage());
+        }
 
-        System.out.println("Emprunté : " + livre.estEmprunte());
+        // System.out.println("Emprunté : " + livre.estEmprunte());
 
         // Test double emprunt
         try {
             livre.emprunter();
-        } catch (IllegalStateException e) {
+        } catch (DocumentIndisponibleException e) {
             System.out.println("Erreur attendue : " + e.getMessage());
         }
 
