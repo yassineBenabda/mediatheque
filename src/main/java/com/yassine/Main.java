@@ -69,5 +69,20 @@ public class Main {
 
         System.out.println("\n=== Max ===");
         System.out.println(max.descriptionCourte());
+
+        System.out.println("\n=== Bibliothécaire ===");
+
+        Catalogue<Document> catalogueDocuments = new Catalogue<>();
+
+        Bibliothecaire bibliothecaire =
+                new Bibliothecaire("Yassine", catalogueDocuments);
+
+        bibliothecaire.accueillir();
+
+        bibliothecaire.ajouterDocument(
+                new Livre("Design Patterns", "Erich Gamma")
+        );
+
+        bibliothecaire.rechercherDocument("Design Patterns");
     }
 }
