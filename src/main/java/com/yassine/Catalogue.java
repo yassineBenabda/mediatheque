@@ -1,10 +1,11 @@
 package com.yassine;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
-public class Catalogue<T extends Document> {
+public class Catalogue<T extends Document> implements Iterable<T> {
 
     private final List<T> elements = new ArrayList<>();
 
@@ -22,9 +23,8 @@ public class Catalogue<T extends Document> {
         return Optional.empty();
     }
 
-    public void afficherTout() {
-        for (T element : elements) {
-            System.out.println(element.descriptionCourte());
-        }
+    @Override
+    public Iterator<T> iterator() {
+        return elements.iterator();
     }
 }

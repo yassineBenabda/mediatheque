@@ -46,7 +46,9 @@ public class Main {
                 new Livre("Effective Java", "Joshua Bloch")
         );
 
-        catalogue.afficherTout();
+        for (Livre document : catalogue) {
+            System.out.println(document.descriptionCourte());
+        }
 
         // ========================================
         // 3. Test recherche
