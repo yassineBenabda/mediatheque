@@ -1,23 +1,16 @@
+
 package com.yassine;
 
 import java.util.List;
 
 public class RapportService {
 
-    public void genererRapport(List<Document> docs, String format) {
+    public void genererRapport(
+            List<Document> docs,
+            FormatRapport formatRapport) {
 
-        // 1. Générer le contenu
-        FormatRapport generateur;
-
-        if (format.equals("CSV")) {
-            generateur = new FormatCSV();
-        } else if (format.equals("TXT")) {
-            generateur = new FormatTXT();
-        } else {
-            throw new IllegalArgumentException("Format inconnu");
-        }
-
-        String contenu = generateur.generer(docs);
+        // 1. Générer le contenu avec le format reçu
+        String contenu = formatRapport.generer(docs);
 
         // 2. Écrire le rapport
         SortieRapport sortie = new SortieFichier();
@@ -28,4 +21,3 @@ public class RapportService {
         notificateur.notifier("Rapport genere");
     }
 }
-

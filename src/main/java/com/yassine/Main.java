@@ -1,4 +1,4 @@
-package  com.yassine;
+package com.yassine;
 
 import java.util.List;
 
@@ -9,16 +9,21 @@ public class Main {
         // Création des documents
         List<Document> docs = List.of(
                 new Livre("Clean Code", "Robert C. Martin"),
-                new Livre("Java pour débutants", "Auteur inconnu")
+                new Livre("Effective Java", "Joshua Bloch"),
+                new Livre("Design Patterns", "Erich Gamma")
         );
 
         // Création du service
         RapportService service = new RapportService();
 
-        // Génération du rapport CSV
-        System.out.println("Génération du rapport CSV...");
-        service.genererRapport(docs, "CSV");
+        // Test CSV
+        System.out.println("=== Génération CSV ===");
+        service.genererRapport(docs, new FormatCSV());
 
-        System.out.println("Rapport généré avec succès !");
+        // Test TXT
+        System.out.println("\n=== Génération TXT ===");
+        service.genererRapport(docs, new FormatTXT());
+
+        System.out.println("\nTous les rapports ont été générés !");
     }
 }

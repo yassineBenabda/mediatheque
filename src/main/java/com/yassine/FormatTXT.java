@@ -1,8 +1,5 @@
 package com.yassine;
 
-import com.yassine.Document;
-import com.yassine.FormatRapport;
-
 import java.util.List;
 
 public class FormatTXT implements FormatRapport {
