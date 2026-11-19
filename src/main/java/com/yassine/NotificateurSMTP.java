@@ -1,12 +1,11 @@
 package com.yassine;
 
-
 public class NotificateurSMTP implements Notificateur {
 
     private final ServeurSmtp serveur;
 
-    public NotificateurSMTP() {
-        this.serveur = new ServeurSmtp("smtp.itbs.tn");
+    public NotificateurSMTP(ServeurSmtp serveur) {
+        this.serveur = serveur;
     }
 
     @Override
@@ -14,4 +13,3 @@ public class NotificateurSMTP implements Notificateur {
         serveur.envoyer("direction@itbs.tn", message);
     }
 }
-

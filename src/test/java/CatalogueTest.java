@@ -1,4 +1,5 @@
 import com.yassine.Catalogue;
+import com.yassine.DocumentIndisponibleException;
 import com.yassine.Livre;
 
 import org.junit.jupiter.api.Test;
@@ -8,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CatalogueTest {
 
     @Test
-    void testEmpruntNormal() {
+    void testEmpruntNormal() throws DocumentIndisponibleException {
 
         Livre livre = new Livre(
                 "Clean Code",
@@ -21,7 +22,7 @@ public class CatalogueTest {
     }
 
     @Test
-    void testDoubleEmprunt() {
+    void testDoubleEmprunt() throws DocumentIndisponibleException {
 
         Livre livre = new Livre(
                 "Clean Code",

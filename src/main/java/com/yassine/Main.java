@@ -6,24 +6,33 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // Création des documents
+        // 1. Créer les documents
         List<Document> docs = List.of(
                 new Livre("Clean Code", "Robert C. Martin"),
                 new Livre("Effective Java", "Joshua Bloch"),
                 new Livre("Design Patterns", "Erich Gamma")
         );
 
-        // Création du service
-        RapportService service = new RapportService();
+        // 2. Créer les dépendances
+        FormatRapport format = new FormatCSV();
 
-        // Test CSV
-        System.out.println("=== Génération CSV ===");
-        service.genererRapport(docs, new FormatCSV());
+        SortieRapport sortie = new SortieFichier();
 
-        // Test TXT
-        System.out.println("\n=== Génération TXT ===");
-        service.genererRapport(docs, new FormatTXT());
+        ServeurSmtp serveur = new ServeurSmtp("smtp.itbs.tn");
+        Notificateur notificateur = new NotificateurSMTP(serveur);
 
-        System.out.println("\nTous les rapports ont été générés !");
+        // 3. Injecter les dépendances
+        RapportService service = new RapportService(
+                format,
+                sortie,
+                notificateur
+        );
+
+        // 4. Générer le rapport
+        System.out.println("Génération du rapport...");
+
+        service.genererRapport(docs);
+
+        System.out.println("Rapport généré avec succès !");
     }
 }
