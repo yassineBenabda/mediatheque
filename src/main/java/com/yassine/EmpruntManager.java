@@ -1,34 +1,20 @@
+
 package com.yassine;
 
 public class EmpruntManager {
 
     private final Catalogue<Document> catalogue;
+    private final ConfigurationMediatheque config;
 
-    public EmpruntManager(Catalogue<Document> catalogue) {
+    public EmpruntManager(
+            Catalogue<Document> catalogue,
+            ConfigurationMediatheque config) {
+
         this.catalogue = catalogue;
+        this.config = config;
     }
 
-    public void emprunter(String titre)
-            throws DocumentIntrouvableException,
-            DocumentIndisponibleException {
-
-        // 1. Rechercher le document
-        Document document = catalogue.rechercherParTitre(titre)
-                .orElseThrow(() ->
-                        new DocumentIntrouvableException(
-                                "Document introuvable : " + titre
-                        )
-                );
-
-        // 2. Vérifier si le document est empruntable
-        if (!(document instanceof Empruntable)) {
-            throw new DocumentIndisponibleException(
-                    "Le document '" + titre + "' n'est pas empruntable"
-            );
-        }
-
-        // 3. Effectuer l'emprunt
-        Empruntable empruntable = (Empruntable) document;
-        empruntable.emprunter();
+    public ConfigurationMediatheque getConfig() {
+        return config;
     }
 }
