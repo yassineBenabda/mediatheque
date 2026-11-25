@@ -7,11 +7,28 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // 1. Créer les documents
+        // 1. Créer les livres avec Builder
         List<Document> docs = List.of(
-                new Livre("Clean Code", "Robert C. Martin"),
-                new Livre("Effective Java", "Joshua Bloch"),
-                new Livre("Design Patterns", "Erich Gamma")
+
+                new Livre.Builder("Clean Code", 2008)
+                        .auteur("Robert C. Martin")
+                        .nbPages(464)
+                        .isbn("978-0132350884")
+                        .editeur("Prentice Hall")
+                        .langue("en")
+                        .build(),
+
+                new Livre.Builder("Effective Java", 2018)
+                        .auteur("Joshua Bloch")
+                        .nbPages(416)
+                        .langue("en")
+                        .build(),
+
+                new Livre.Builder("Design Patterns", 1994)
+                        .auteur("Erich Gamma")
+                        .nbPages(395)
+                        .langue("en")
+                        .build()
         );
 
         // 2. Créer le catalogue
@@ -21,7 +38,7 @@ public class Main {
             catalogue.ajouter(doc);
         }
 
-        // 3. Créer la configuration unique
+        // 3. Créer la configuration
         ConfigurationMediatheque config =
                 new ConfigurationMediatheque(21, 5);
 
