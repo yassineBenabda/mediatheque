@@ -24,6 +24,19 @@ public class Livre extends Document implements Empruntable {
         this.emprunte = false;
     }
 
+    // Constructeur de copie (Prototype)
+    public Livre(Livre original) {
+        super(original.getTitre(), original.getAnnee());
+
+        this.auteur = original.auteur;
+        this.nbPages = original.nbPages;
+        this.isbn = original.isbn;
+        this.editeur = original.editeur;
+        this.langue = original.langue;
+        this.emprunte = original.emprunte;
+    }
+
+
     public String getAuteur() {
         return auteur;
     }
